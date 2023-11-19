@@ -6,6 +6,7 @@ namespace StockRaven
     {
         static void Main(string[] args)
         {
+            MarketStatusClient.GetMarketStatus().Wait();
         }
     }
 }
