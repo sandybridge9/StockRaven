@@ -1,4 +1,5 @@
 ﻿using Shared.Models;
+using Shared.Resources.Queries;
 using Shared.Wrappers;
 
 namespace Shared.Resources
@@ -14,9 +15,7 @@ namespace Shared.Resources
 
         public async Task<IList<MarketStatus>> GetMarketStatus()
         {
-            const string url = "https://www.alphavantage.co/query?function=MARKET_STATUS&apikey=__APIKEY__";
-
-            var data = await httpClientWrapper.PerformApiCallAsync(url);
+            var data = await httpClientWrapper.PerformApiCallAsync(MarketStatusQueries.MarketStatusUrl);
 
             foreach (var row in data)
             {
