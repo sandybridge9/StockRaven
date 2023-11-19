@@ -1,7 +1,5 @@
 ﻿using Shared.Models;
-using Shared.Providers;
 using Shared.Wrappers;
-using System.Text.Json;
 
 namespace Shared.Resources
 {
