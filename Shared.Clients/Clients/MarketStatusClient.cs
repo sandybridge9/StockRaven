@@ -15,7 +15,7 @@ namespace Shared.Resources
 
         public async Task<IList<MarketStatus>> GetMarketStatus()
         {
-            var data = await httpClientWrapper.PerformApiCallAsync(MarketStatusQueries.MarketStatusUrl);
+            var data = await httpClientWrapper.PerformApiCallAsync(MarketStatusUrls.MarketStatus);
 
             foreach (var row in data)
             {
