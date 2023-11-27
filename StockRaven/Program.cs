@@ -1,4 +1,5 @@
 ﻿using Shared.Resources;
+using Shared.Wrappers;
 
 namespace StockRaven
 {
@@ -6,7 +7,12 @@ namespace StockRaven
     {
         static void Main(string[] args)
         {
-            MarketStatusClient.GetMarketStatus().Wait();
+            var htw = new HttpClientWrapper();
+            var gmsc = new GlobalMarketStatusClient(htw);
+
+            var result = gmsc.GetMarketStatus().GetAwaiter().GetResult();
+
+            //GlobalMarketStatusClient.GetMarketStatus().Wait();
         }
     }
 }

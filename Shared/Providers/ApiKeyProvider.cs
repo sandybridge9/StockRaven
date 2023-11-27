@@ -6,21 +6,41 @@
 
         static ApiKeyProvider() { }
 
-        private static ApiKeyProvider instance = new ApiKeyProvider();
+        private static ApiKeyProvider instance;
+
+        private static object syncRoot = new object();
 
         public static ApiKeyProvider Instance
         {
             get
             {
+                if(instance == null)
+                {
+                    lock(syncRoot)
+                    {
+                        if(instance == null)
+                        {
+                            instance = new ApiKeyProvider();
+                        }
+                    }
+                }
+
                 return instance;
             }
         }
 
         private const string ApiKeyLocationFolder = @"D:\Projects\Locations\ApiKeyLocation.txt";
 
+        private const string ApiKeyReplaceableString = "__APIKEY__";
+
         private string apiAccessKey = "";
 
-        public string GetApiAccessKey()
+        public string AlterUrlWithApiAccessKey(string url)
+        {
+            return url.Replace(ApiKeyReplaceableString, GetApiAccessKey());
+        }
+
+        private string GetApiAccessKey()
         {
             if(!string.IsNullOrEmpty(apiAccessKey))
             {
