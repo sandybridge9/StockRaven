@@ -1,5 +1,4 @@
-﻿using Shared.Clients.Models.MarketStatus;
-using Shared.GenericHttpClient.Clients;
+﻿using Shared.GenericHttpClient.Clients;
 using Shared.Resources;
 using Shared.Wrappers;
 
@@ -9,23 +8,39 @@ namespace StockRaven
     {
         static void Main(string[] args)
         {
-            var htw = new HttpClientWrapper();
-            var gc = new GenericClient<GlobalMarketStatusRecord>(htw);
-            var gmsc = new GlobalMarketStatusClient(gc);
+            DoStuff();
+        }
 
-            var result = gmsc.GetGlobalMarketStatus().GetAwaiter().GetResult();
+        static void DoStuff()
+        {
+            var httpClientWrapper = new HttpClientWrapper();
+            var genericClient = new GenericClient(httpClientWrapper);
 
-            if(result != null)
+            //seems to be working fine
+            var globalMarketStatusClient = new GlobalMarketStatusClient(genericClient);
+            var globalMarketStatus = globalMarketStatusClient.GetGlobalMarketStatusAsync().GetAwaiter().GetResult();
+
+            if (globalMarketStatus != null)
             {
-                Console.Out.WriteLine(result.Endpoint);
+                Console.Out.WriteLine(globalMarketStatus.Endpoint);
 
-                foreach (var market in result.Markets)
+                foreach (var market in globalMarketStatus.Markets)
                 {
                     if (market != null)
                     {
                         Console.Out.WriteLine($"{market.MarketType}, {market.PrimaryExchanges}, {market.Region}, {market.CurrentStatus}, {market.LocalOpen}, {market.LocalClose}");
                     }
                 }
+            }
+
+            var globalQuoteClient = new GlobalQuoteClient(genericClient);
+            var globalQuoteRecord = globalQuoteClient.GetGlobalQuoteAsync().GetAwaiter().GetResult();
+
+            if (globalQuoteRecord != null)
+            {
+                var globalQuote = globalQuoteRecord.QuoteRecord;
+
+                Console.Out.WriteLine($"{globalQuote.Symbol}, {globalQuote.Open}, {globalQuote.High}, {globalQuote.Low}, {globalQuote.Price}, {globalQuote.Volume}, {globalQuote.LatestTradingDay}, {globalQuote.PreviousClose}, {globalQuote.Change}, {globalQuote.ChangePercent}");
             }
         }
     }

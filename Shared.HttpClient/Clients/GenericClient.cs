@@ -3,7 +3,7 @@ using Shared.Wrappers;
 
 namespace Shared.GenericHttpClient.Clients
 {
-    public class GenericClient<T> : IGenericClient<T> where T : class
+    public class GenericClient : IGenericClient
     {
         private readonly IHttpClientWrapper httpClientWrapper;
 
@@ -12,7 +12,7 @@ namespace Shared.GenericHttpClient.Clients
             this.httpClientWrapper = httpClientWrapper;
         }
 
-        public async Task<T?> GetDataFromUrlAsync(string url)
+        public async Task<T?> GetDataFromUrlAsync<T>(string url) where T : class
         {
             var httpResponse = await httpClientWrapper.PerformApiCallAsync<T>(url);
 

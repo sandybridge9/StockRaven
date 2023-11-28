@@ -6,16 +6,16 @@ namespace Shared.Resources
 {
     public class GlobalMarketStatusClient
     {
-        private readonly IGenericClient<GlobalMarketStatusRecord> genericClient;
+        private readonly IGenericClient genericClient;
 
-        public GlobalMarketStatusClient(IGenericClient<GlobalMarketStatusRecord> genericClient)
+        public GlobalMarketStatusClient(IGenericClient genericClient)
         { 
             this.genericClient = genericClient;
         }
 
-        public async Task<GlobalMarketStatusRecord?> GetGlobalMarketStatus()
+        public async Task<GlobalMarketStatusRecord?> GetGlobalMarketStatusAsync()
         {
-            return await genericClient.GetDataFromUrlAsync(MarketStatusUrlTemplates.MarketStatus);
+            return await genericClient.GetDataFromUrlAsync<GlobalMarketStatusRecord>(MarketStatusUrlTemplates.MarketStatus);
         }
     }
 }
