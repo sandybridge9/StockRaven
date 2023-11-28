@@ -2,7 +2,7 @@
 
 namespace Shared.Clients.Models.MarketStatus
 {
-    public class GlobalMarketStatus
+    public record GlobalMarketStatusRecord
     {
         [JsonPropertyName("endpoint")]
         public required string Endpoint { get; set; }

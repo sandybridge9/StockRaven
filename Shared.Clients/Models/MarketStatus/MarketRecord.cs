@@ -2,7 +2,7 @@
 
 namespace Shared.Clients.Models.MarketStatus
 {
-    public class MarketRecord
+    public record MarketRecord
     {
         [JsonPropertyName("market_type")]
         public required string MarketType { get; set; }
