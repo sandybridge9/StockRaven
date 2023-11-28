@@ -29,18 +29,12 @@
             }
         }
 
+        // TODO: store location folder in appSettings
         private const string ApiKeyLocationFolder = @"D:\Projects\Locations\ApiKeyLocation.txt";
-
-        private const string ApiKeyReplaceableString = "__APIKEY__";
 
         private string apiAccessKey = "";
 
-        public string AlterUrlWithApiAccessKey(string url)
-        {
-            return url.Replace(ApiKeyReplaceableString, GetApiAccessKey());
-        }
-
-        private string GetApiAccessKey()
+        public string GetApiAccessKey()
         {
             if(!string.IsNullOrEmpty(apiAccessKey))
             {

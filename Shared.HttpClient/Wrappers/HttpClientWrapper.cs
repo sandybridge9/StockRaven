@@ -1,14 +1,15 @@
 ﻿using Shared.GenericHttpClient.Models;
-using Shared.Providers;
+using Shared.Logic.NewFolder;
 using System.Text.Json;
 
 namespace Shared.Wrappers
 {
     public class HttpClientWrapper : IHttpClientWrapper
     {
-        public async Task<HttpResponse<T>> PerformApiCallAsync<T>(string url) where T : class
+        public async Task<HttpResponse<T>> PerformApiCallAsync<T>(string urlTemplate) where T : class
         {
-            var usableUrl = ApiKeyProvider.Instance.AlterUrlWithApiAccessKey(url);
+            var usableUrl = UrlBuilder.BuildUrl(urlTemplate);
+
             var httpResponse = new HttpResponse<T>();
 
             using (var client = new HttpClient())
