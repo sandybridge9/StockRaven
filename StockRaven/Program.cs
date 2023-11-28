@@ -11,8 +11,6 @@ namespace StockRaven
             var gmsc = new GlobalMarketStatusClient(htw);
 
             var result = gmsc.GetMarketStatus().GetAwaiter().GetResult();
-
-            //GlobalMarketStatusClient.GetMarketStatus().Wait();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Shared.Clients.Models.MarketStatus;
+using Shared.GenericHttpClient.Clients;
 using Shared.GenericHttpClient.Models;
 using Shared.Resources.Queries;
 using Shared.Wrappers;
@@ -7,16 +8,16 @@ namespace Shared.Resources
 {
     public class GlobalMarketStatusClient
     {
-        private readonly IHttpClientWrapper httpClientWrapper;
+        private readonly IGenericClient<GlobalMarketStatus> genericClient;
 
-        public GlobalMarketStatusClient(IHttpClientWrapper httpClientWrapper)
+        public GlobalMarketStatusClient(IGenericClient<GlobalMarketStatus> genericClient)
         { 
-            this.httpClientWrapper = httpClientWrapper;
+            this.genericClient = genericClient;
         }
 
-        public async Task<IList<GlobalMarketStatusRecord>> GetMarketStatus()
+        public async Task<IList<GlobalMarketStatus>> GetMarketStatus()
         {
-            var httpResponse = await httpClientWrapper.PerformApiCallAsync<GlobalMarketStatusRecord>(MarketStatusUrls.MarketStatus);
+            var httpResponse = await httpClientWrapper.PerformApiCallAsync<GlobalMarketStatus>(MarketStatusUrls.MarketStatus);
 
             if(httpResponse.ResponseType == HttpResponseType.Success
                 && httpResponse.Data is not null)
@@ -25,12 +26,15 @@ namespace Shared.Resources
 
                 foreach (var market in httpResponse.Data.Markets)
                 {
-                    await Console.Out.WriteLineAsync($"{market}");
+                    if(market != null)
+                    {
+                        await Console.Out.WriteLineAsync($"{market.MarketType}, {market.PrimaryExchanges}, {market.Region}, {market.CurrentStatus}, {market.LocalClose}, {market.LocalOpen}");
+                    }
                 }
 
             }
 
-            return new List<GlobalMarketStatusRecord>();
+            return new List<GlobalMarketStatus>();
         }
     }
 }
