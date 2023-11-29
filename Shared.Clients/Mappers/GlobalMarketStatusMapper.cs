@@ -1,4 +1,5 @@
 ﻿using Shared.Clients.Models.Domain.MarketStatus;
+using Shared.Clients.Models.Records.DailyAdjustedTimeSeries;
 using Shared.Clients.Models.Records.MarketStatus;
 
 namespace Shared.Clients.Mappers

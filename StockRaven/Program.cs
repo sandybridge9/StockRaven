@@ -13,6 +13,15 @@ namespace StockRaven
 
         static void DoStuff()
         {
+            //GlobalMarketStatusClientTest();
+
+            //GlobalQuoteClientTest();
+
+            DailyAdjustedTimeSeriesClientTest();
+        }
+
+        private static void GlobalMarketStatusClientTest()
+        {
             var httpClientWrapper = new HttpClientWrapper();
             var genericClient = new GenericClient(httpClientWrapper);
 
@@ -30,13 +39,35 @@ namespace StockRaven
                     }
                 }
             }
+        }
 
+        private static void GlobalQuoteClientTest()
+        {
+            var httpClientWrapper = new HttpClientWrapper();
+            var genericClient = new GenericClient(httpClientWrapper);
+
+            //seems to be working fine
             var globalQuoteClient = new GlobalQuoteClient(genericClient);
             var globalQuote = globalQuoteClient.GetGlobalQuoteAsync().GetAwaiter().GetResult();
 
             if (globalQuote != null)
             {
                 Console.Out.WriteLine($"{globalQuote.Symbol}, {globalQuote.Open}, {globalQuote.High}, {globalQuote.Low}, {globalQuote.Price}, {globalQuote.Volume}, {globalQuote.LatestTradingDay}, {globalQuote.PreviousClose}, {globalQuote.Change}, {globalQuote.ChangePercent}");
+            }
+        }
+
+        private static void DailyAdjustedTimeSeriesClientTest()
+        {
+            var httpClientWrapper = new HttpClientWrapper();
+            var genericClient = new GenericClient(httpClientWrapper);
+
+            //seems to be working fine
+            var dailyAdjustedTimeSeriesClient = new DailyAdjustedTimeSeriesClient(genericClient);
+            var dailyAdjustedTimeSeries = dailyAdjustedTimeSeriesClient.GetDailyAdjustedTimeSeriesAsync().GetAwaiter().GetResult();
+
+            if (dailyAdjustedTimeSeries != null)
+            {
+                // Console.Out.WriteLine($"{globalQuote.Symbol}, {globalQuote.Open}, {globalQuote.High}, {globalQuote.Low}, {globalQuote.Price}, {globalQuote.Volume}, {globalQuote.LatestTradingDay}, {globalQuote.PreviousClose}, {globalQuote.Change}, {globalQuote.ChangePercent}");
             }
         }
     }
