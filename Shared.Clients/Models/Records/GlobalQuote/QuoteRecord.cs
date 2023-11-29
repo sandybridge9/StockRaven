@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Shared.Clients.Models.GlobalQuote
+namespace Shared.Clients.Models.Records.GlobalQuote
 {
     public record QuoteRecord
     {
@@ -8,28 +8,28 @@ namespace Shared.Clients.Models.GlobalQuote
         public required string Symbol { get; set; }
 
         [JsonPropertyName("02. open")]
-        public required decimal Open { get; set; }
+        public required string Open { get; set; }
 
         [JsonPropertyName("03. high")]
-        public required decimal High { get; set; }
+        public required string High { get; set; }
 
         [JsonPropertyName("04. low")]
-        public required decimal Low { get; set; }
+        public required string Low { get; set; }
 
         [JsonPropertyName("05. price")]
-        public required decimal Price { get; set; }
+        public required string Price { get; set; }
 
         [JsonPropertyName("06. volume")]
-        public required int Volume { get; set; }
+        public required string Volume { get; set; }
 
         [JsonPropertyName("07. latest trading day")]
-        public required DateTime LatestTradingDay { get; set; }
+        public required string LatestTradingDay { get; set; }
 
         [JsonPropertyName("08. previous close")]
-        public required decimal PreviousClose { get; set; }
+        public required string PreviousClose { get; set; }
 
         [JsonPropertyName("09. change")]
-        public required decimal Change { get; set; }
+        public required string Change { get; set; }
 
         [JsonPropertyName("10. change percent")]
         public required string ChangePercent { get; set; }

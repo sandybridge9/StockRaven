@@ -1,4 +1,6 @@
-﻿using Shared.Clients.Models.MarketStatus;
+﻿using Shared.Clients.Mappers;
+using Shared.Clients.Models.Domain.MarketStatus;
+using Shared.Clients.Models.Records.MarketStatus;
 using Shared.GenericHttpClient.Clients;
 using Shared.Resources.Queries;
 
@@ -13,9 +15,17 @@ namespace Shared.Resources
             this.genericClient = genericClient;
         }
 
-        public async Task<GlobalMarketStatusRecord?> GetGlobalMarketStatusAsync()
+        public async Task<GlobalMarketStatus?> GetGlobalMarketStatusAsync()
         {
-            return await genericClient.GetDataFromUrlAsync<GlobalMarketStatusRecord>(MarketStatusUrlTemplates.MarketStatus);
+            var globalMarketStatusRecord = await genericClient
+                .GetDataFromUrlAsync<GlobalMarketStatusRecord>(MarketStatusUrlTemplates.MarketStatus);
+
+            if(globalMarketStatusRecord != null)
+            {
+                return GlobalMarketStatusMapper.MapGlobalMarketStatus(globalMarketStatusRecord);
+            }
+
+            return default;
         }
     }
 }

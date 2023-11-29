@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Shared.Clients.Models.GlobalQuote
+namespace Shared.Clients.Models.Records.GlobalQuote
 {
     public record GlobalQuoteRecord
     {

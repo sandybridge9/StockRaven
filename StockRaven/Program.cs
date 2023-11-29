@@ -22,24 +22,20 @@ namespace StockRaven
 
             if (globalMarketStatus != null)
             {
-                Console.Out.WriteLine(globalMarketStatus.Endpoint);
-
                 foreach (var market in globalMarketStatus.Markets)
                 {
                     if (market != null)
                     {
-                        Console.Out.WriteLine($"{market.MarketType}, {market.PrimaryExchanges}, {market.Region}, {market.CurrentStatus}, {market.LocalOpen}, {market.LocalClose}");
+                        Console.Out.WriteLine($"{market.MarketType}, {string.Join(", ", market.PrimaryExchanges)}, {market.Region}, {market.CurrentStatus}, {market.LocalOpen}, {market.LocalClose}");
                     }
                 }
             }
 
             var globalQuoteClient = new GlobalQuoteClient(genericClient);
-            var globalQuoteRecord = globalQuoteClient.GetGlobalQuoteAsync().GetAwaiter().GetResult();
+            var globalQuote = globalQuoteClient.GetGlobalQuoteAsync().GetAwaiter().GetResult();
 
-            if (globalQuoteRecord != null)
+            if (globalQuote != null)
             {
-                var globalQuote = globalQuoteRecord.QuoteRecord;
-
                 Console.Out.WriteLine($"{globalQuote.Symbol}, {globalQuote.Open}, {globalQuote.High}, {globalQuote.Low}, {globalQuote.Price}, {globalQuote.Volume}, {globalQuote.LatestTradingDay}, {globalQuote.PreviousClose}, {globalQuote.Change}, {globalQuote.ChangePercent}");
             }
         }

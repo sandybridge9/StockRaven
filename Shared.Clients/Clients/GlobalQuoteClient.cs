@@ -1,5 +1,6 @@
-﻿using Shared.Clients.Models.GlobalQuote;
-using Shared.Clients.Models.MarketStatus;
+﻿using Shared.Clients.Mappers;
+using Shared.Clients.Models.Domain.GlobalQuote;
+using Shared.Clients.Models.Records.GlobalQuote;
 using Shared.GenericHttpClient.Clients;
 using Shared.Resources.Queries;
 
@@ -14,9 +15,17 @@ namespace Shared.Resources
             this.genericClient = genericClient;
         }
 
-        public async Task<GlobalQuoteRecord?> GetGlobalQuoteAsync()
+        public async Task<GlobalQuote?> GetGlobalQuoteAsync()
         {
-            return await genericClient.GetDataFromUrlAsync<GlobalQuoteRecord>(GlobalQuoteUrlTemplates.GlobalQuote);
+            var globalQuoteRecord = await genericClient
+                .GetDataFromUrlAsync<GlobalQuoteRecord>(GlobalQuoteUrlTemplates.GlobalQuote);
+
+            if (globalQuoteRecord != null)
+            {
+                return GlobalQuoteMapper.MapGlobalQuote(globalQuoteRecord);
+            }
+
+            return default;
         }
     }
 }

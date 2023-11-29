@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Shared.Clients.Models.MarketStatus
+namespace Shared.Clients.Models.Records.MarketStatus
 {
     public record GlobalMarketStatusRecord
     {
@@ -8,6 +8,6 @@ namespace Shared.Clients.Models.MarketStatus
         public required string Endpoint { get; set; }
 
         [JsonPropertyName("markets")]
-        public required List<MarketRecord> Markets { get; set; }
+        public required List<MarketRecord> MarketRecords { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Shared.Clients.Models.MarketStatus
+namespace Shared.Clients.Models.Records.MarketStatus
 {
     public record MarketRecord
     {
