@@ -38,7 +38,6 @@ namespace Shared.Wrappers
 
                 try
                 {
-                    var jsonOptions = new JsonSerializerOptions();
                     var data = JsonSerializer.Deserialize<T>(responseContent);
 
                     httpResponse.ResponseType = HttpResponseType.Success;
@@ -46,9 +45,9 @@ namespace Shared.Wrappers
 
                     return httpResponse;
                 }
-                catch (JsonException)
+                catch (JsonException jsonException)
                 {
-                    await Console.Out.WriteLineAsync($"JSON from response data could not be deserialized as {typeof(T)}. URL: [{usableUrl}]");
+                    await Console.Out.WriteLineAsync($"JSON from response data could not be deserialized as {typeof(T)}. URL: [{usableUrl}] \n {jsonException}");
 
                     httpResponse.ResponseType = HttpResponseType.Undeserializable;
 
