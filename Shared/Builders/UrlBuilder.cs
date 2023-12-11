@@ -6,12 +6,14 @@ namespace Shared.Logic.NewFolder
     {
         private const string ApiKeyReplaceableString = "__APIKEY__";
         private const string SymbolReplaceableString = "__SYMBOL__";
+        private const string IntervalReplaceableString = "__INTERVAL__";
 
         public static string BuildUrl(string urlTemplate)
         {
             return urlTemplate
                 .Replace(ApiKeyReplaceableString, ApiKeyProvider.Instance.GetApiAccessKey())
-                .Replace(SymbolReplaceableString, "IBM");
+                .Replace(SymbolReplaceableString, "IBM")
+                .Replace(IntervalReplaceableString, "5min");
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Shared.Clients.Models.Domain.DailyAdjustedTimeSeries;
-using Shared.Clients.Models.Domain.TimeSeries.DailyTimeSeries;
+﻿using Shared.Clients.Models.Domain.TimeSeries.DailyTimeSeries;
 using Shared.Clients.Models.Records.TimeSeries.DailyTimeSeries;
 using System.Globalization;
 

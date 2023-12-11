@@ -1,4 +1,5 @@
-﻿using Shared.GenericHttpClient.Clients;
+﻿using Shared.Clients.Clients.TimeSeries;
+using Shared.GenericHttpClient.Clients;
 using Shared.Resources;
 using Shared.Wrappers;
 
@@ -17,7 +18,9 @@ namespace StockRaven
 
             //GlobalQuoteClientTest();
 
-            DailyTimeSeriesClientTest();
+            //DailyTimeSeriesClientTest();
+
+            IntradayTimeSeriesClientTest();
 
             //JsonDeserializationTests();
         }
@@ -70,6 +73,21 @@ namespace StockRaven
             if (dailyTimeSeries != null)
             {
                 Console.WriteLine(dailyTimeSeries);
+            }
+        }
+
+        private static void IntradayTimeSeriesClientTest()
+        {
+            var httpClientWrapper = new HttpClientWrapper();
+            var genericClient = new GenericClient(httpClientWrapper);
+
+            //seems to be working fine
+            var intradayTimeSeriesClient = new IntradayTimeSeriesClient(genericClient);
+            var intradayTimeSeries = intradayTimeSeriesClient.GetIntradayTimeSeriesAsync().GetAwaiter().GetResult();
+
+            if (intradayTimeSeries != null)
+            {
+                Console.WriteLine(intradayTimeSeries);
             }
         }
     }
