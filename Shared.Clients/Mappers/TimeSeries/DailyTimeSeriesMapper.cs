@@ -1,8 +1,9 @@
 ﻿using Shared.Clients.Models.Domain.DailyAdjustedTimeSeries;
-using Shared.Clients.Models.Records.DailyTimeSeries;
+using Shared.Clients.Models.Domain.TimeSeries.DailyTimeSeries;
+using Shared.Clients.Models.Records.TimeSeries.DailyTimeSeries;
 using System.Globalization;
 
-namespace Shared.Clients.Mappers
+namespace Shared.Clients.Mappers.TimeSeries
 {
     public static class DailyTimeSeriesMapper
     {
@@ -17,7 +18,7 @@ namespace Shared.Clients.Mappers
 
             var dailyData = new Dictionary<DateTime, DailyData>();
 
-            foreach(var dailyDataRecord in dailyTimeSeriesRecord.DailyDataRecords)
+            foreach (var dailyDataRecord in dailyTimeSeriesRecord.DailyDataRecords)
             {
                 dailyData.Add(
                     dailyDataRecord.Key,

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Shared.Clients.Models.Records.DailyTimeSeries
+namespace Shared.Clients.Models.Records.TimeSeries.DailyTimeSeries
 {
     public record DailyDataRecord
     {

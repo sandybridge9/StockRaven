@@ -1,4 +1,4 @@
-﻿namespace Shared.Clients.Models.Domain.DailyAdjustedTimeSeries
+﻿namespace Shared.Clients.Models.Domain.TimeSeries.DailyTimeSeries
 {
     public class DailyData
     {
