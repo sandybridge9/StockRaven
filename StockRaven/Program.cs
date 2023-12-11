@@ -17,7 +17,9 @@ namespace StockRaven
 
             //GlobalQuoteClientTest();
 
-            DailyAdjustedTimeSeriesClientTest();
+            DailyTimeSeriesClientTest();
+
+            //JsonDeserializationTests();
         }
 
         private static void GlobalMarketStatusClientTest()
@@ -56,18 +58,18 @@ namespace StockRaven
             }
         }
 
-        private static void DailyAdjustedTimeSeriesClientTest()
+        private static void DailyTimeSeriesClientTest()
         {
             var httpClientWrapper = new HttpClientWrapper();
             var genericClient = new GenericClient(httpClientWrapper);
 
             //seems to be working fine
-            var dailyAdjustedTimeSeriesClient = new DailyAdjustedTimeSeriesClient(genericClient);
-            var dailyAdjustedTimeSeries = dailyAdjustedTimeSeriesClient.GetDailyAdjustedTimeSeriesAsync().GetAwaiter().GetResult();
+            var dailyTimeSeriesClient = new DailyTimeSeriesClient(genericClient);
+            var dailyTimeSeries = dailyTimeSeriesClient.GetDailyTimeSeriesAsync().GetAwaiter().GetResult();
 
-            if (dailyAdjustedTimeSeries != null)
+            if (dailyTimeSeries != null)
             {
-                // Console.Out.WriteLine($"{globalQuote.Symbol}, {globalQuote.Open}, {globalQuote.High}, {globalQuote.Low}, {globalQuote.Price}, {globalQuote.Volume}, {globalQuote.LatestTradingDay}, {globalQuote.PreviousClose}, {globalQuote.Change}, {globalQuote.ChangePercent}");
+                Console.WriteLine(dailyTimeSeries);
             }
         }
     }

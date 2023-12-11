@@ -1,6 +1,6 @@
 ﻿namespace Shared.Clients.Models.Domain.DailyAdjustedTimeSeries
 {
-    public class DailyAdjustedTimeSeriesMetadata
+    public class DailyTimeSeriesMetadata
     {
         public required string Symbol { get; set; }
 

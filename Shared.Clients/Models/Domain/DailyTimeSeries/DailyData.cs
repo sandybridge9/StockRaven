@@ -1,6 +1,6 @@
 ﻿namespace Shared.Clients.Models.Domain.DailyAdjustedTimeSeries
 {
-    public class DailyAdjustedData
+    public class DailyData
     {
         public required decimal Open { get; set; }
 
@@ -10,12 +10,6 @@
 
         public required decimal Close { get; set; }
 
-        public required decimal AdjustedClose { get; set; }
-
         public required int Volume { get; set; }
-
-        public required decimal DividentAmount { get; set; }
-
-        public required decimal SplitCoefficient { get; set; }
     }
 }

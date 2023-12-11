@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Shared.Clients.Models.Records.DailyAdjustedTimeSeries
+namespace Shared.Clients.Models.Records.DailyTimeSeries
 {
-    public record DailyAdjustedTimeSeriesMetadataRecord
+    public record DailyTimeSeriesMetadataRecord
     {
         [JsonPropertyName("1. Information")]
         public required string Information { get; set; }

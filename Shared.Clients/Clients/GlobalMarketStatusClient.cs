@@ -1,6 +1,5 @@
 ﻿using Shared.Clients.Mappers;
 using Shared.Clients.Models.Domain.MarketStatus;
-using Shared.Clients.Models.Records.DailyAdjustedTimeSeries;
 using Shared.Clients.Models.Records.MarketStatus;
 using Shared.GenericHttpClient.Clients;
 using Shared.Resources.Queries;
