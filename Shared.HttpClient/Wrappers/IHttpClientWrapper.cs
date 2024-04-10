@@ -1,6 +1,6 @@
 ﻿using Shared.GenericHttpClient.Models;
 
-namespace Shared.Wrappers
+namespace Shared.GenericHttpClient.Wrappers
 {
     public interface IHttpClientWrapper
     {

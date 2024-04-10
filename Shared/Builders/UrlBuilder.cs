@@ -1,6 +1,6 @@
-﻿using Shared.Providers;
+﻿using Shared.Logic.ApiKey;
 
-namespace Shared.Logic.NewFolder
+namespace Shared.Logic.Builders
 {
     public static class UrlBuilder
     {
@@ -11,7 +11,7 @@ namespace Shared.Logic.NewFolder
         public static string BuildUrl(string urlTemplate)
         {
             return urlTemplate
-                .Replace(ApiKeyReplaceableString, ApiKeyProvider.Instance.GetApiAccessKey())
+                .Replace(ApiKeyReplaceableString, ApiKeyProvider.Instance.GetApiAccessKey(SupportedApiName.Polygon))
                 .Replace(SymbolReplaceableString, "IBM")
                 .Replace(IntervalReplaceableString, "5min");
         }
